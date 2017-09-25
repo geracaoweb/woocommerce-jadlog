@@ -14,11 +14,11 @@
  * @package WooCommerce_Jadlog
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
  	exit; // Exit if accessed directly.
- }
+}
 
-if ( class_exists( 'WC_Jadlog' ) ) :
+if ( ! class_exists( 'WC_Jadlog' ) ) :
 
     /**
      * WooCommerce Jadlog main class.
@@ -32,6 +32,13 @@ if ( class_exists( 'WC_Jadlog' ) ) :
          */
 
         const VERSION = '0.0.0';
+
+	/**
+	 * Instance of this class.
+	 *
+	 * @var object
+	 */
+	protected static $instance = null;
 
         /**
          * Constructor.
@@ -74,6 +81,12 @@ if ( class_exists( 'WC_Jadlog' ) ) :
         public function load_plugin_textdomain() {
             load_plugin_textdomain( 'woocommerce-jadlog', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
         }
+
+	/**
+	 * Admin includes.
+	 */
+	private function admin_includes() {
+	}
 
         /**
          * Includes.
