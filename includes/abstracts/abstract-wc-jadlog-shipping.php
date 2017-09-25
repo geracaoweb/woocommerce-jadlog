@@ -241,6 +241,32 @@ abstract class WC_Jadlog_Shipping extends WC_Shipping_Method {
 	}
 
 	/**
+	 * Get Correios service code.
+	 *
+	 * @return string
+	 */
+	public function get_code() {
+		if ( ! empty( $this->custom_code ) ) {
+			$code = $this->custom_code;
+		} elseif ( $this->is_corporate() && ! empty( $this->corporate_code ) ) {
+			$code = $this->corporate_code;
+		} else {
+			$code = $this->code;
+		}
+		return apply_filters( 'woocommerce_correios_shipping_method_code', $code, $this->id, $this->instance_id );
+	}
+
+
+	/**
+	 * Check if need to use corporate services.
+	 *
+	 * @return bool
+	 */
+	protected function is_corporate() {
+		return 'corporate' === $this->service_type;
+	}
+
+	/**
 	 * Get login.
 	 *
 	 * @return string

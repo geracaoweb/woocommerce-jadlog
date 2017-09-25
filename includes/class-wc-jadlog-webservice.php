@@ -227,6 +227,19 @@ class WC_Jadlog_Webservice {
         );
 	}
 
+	/**
+	 * Set the service
+	 *
+	 * @param string|array $service Service.
+	 */
+	public function set_service( $service = '' ) {
+		if ( is_array( $service ) ) {
+			$this->service = implode( ',', $service );
+		} else {
+			$this->service = $service;
+		}
+	}
+
     /**
      * Set Client Id code.
      *
@@ -390,7 +403,16 @@ class WC_Jadlog_Webservice {
 		$this->own_hands = $own_hands;
 	}
 
-    /**
+	/**
+	 * Set the debug mode.
+	 *
+	 * @param string $debug Yes or no.
+	 */
+	public function set_debug( $debug = 'no' ) {
+		$this->debug = $debug;
+	}
+
+	/**
 	 * Get webservice URL.
 	 *
 	 * @return string
